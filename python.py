@@ -26,3 +26,11 @@ def main():
         print("2 = Login")
         print("3 = Beenden")
         auswahl = input("Auswahl: ")
+        if auswahl == "1":
+            konto_erstellen()
+        elif auswahl == "2":
+            login()
+        elif auswahl == "3":
+            break
+        else:
+            print("Ungültige Auswahl!")
