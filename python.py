@@ -1,13 +1,27 @@
 import hashlib
 import getpass
+import json
+import os
 
+DATA_FILE = "daten.json"
 kennwort_manager = {}
+
+def daten_laden():
+    global kennwort_manager
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as f:
+            kennwort_manager = json.load(f)
+
+def daten_speichern():
+    with open(DATA_FILE, "w") as f:
+        json.dump(kennwort_manager, f)
 
 def konto_erstellen():
     benutzername = input("Eingabe Benutzername: ")
     passwort = getpass.getpass("Eingabe Passwort: ")
     hashed_passwort = hashlib.sha256(passwort.encode()).hexdigest()
     kennwort_manager[benutzername] = hashed_passwort
+    daten_speichern()
     print("Konto erfolgreich erstellt!")
 
 
@@ -21,6 +35,7 @@ def login():
         print("Falscher Benutzername oder Passwort!")
 
 def main():
+    daten_laden()
     while True:
         print("1 = Konto erstellen")
         print("2 = Login")
