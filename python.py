@@ -19,3 +19,10 @@ def login():
         print("Login erfolgreich!")
     else:
         print("Falscher Benutzername oder Passwort!")
+
+def main():
+    while True:
+        print("1 = Konto erstellen")
+        print("2 = Login")
+        print("3 = Beenden")
+        auswahl = input("Auswahl: ")
